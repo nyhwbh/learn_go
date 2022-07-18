@@ -1,9 +1,9 @@
 package gofuncs
 
 type Person struct {
-	name string
-	sex  bool
-	age  int
+	Name string
+	Sex  bool
+	Age  int
 }
 
 //JSON
