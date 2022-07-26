@@ -112,7 +112,94 @@ func (p *PlayerStatus) PlayerRecovery() {
 /***********************************************
 ************** 		skills		****************
 ***********************************************/
+// 마나소모
+func (p *PlayerStatus) UsingMagicPoint() {
+	timeSource := rand.NewSource(time.Now().UnixNano())
+	random := rand.New(timeSource)
+	p.mp -= (random.Intn(15) + 10)
+}
+
+// 공통스킬
+func (p *PlayerStatus) Heal() {
+	p.hp += 30
+	p.UsingMagicPoint()
+}
+
+func (p *PlayerStatus) Steam() {
+	p.battleAtk = int(float64(p.battleAtk) * 0.2)
+	p.UsingMagicPoint()
+}
+
+// 휴먼스킬
+//HumanBasicSkill
+func (p *PlayerStatus) Guard() {
+	p.basicDef = int(float64(p.basicDef) * 0.3)
+	p.UsingMagicPoint()
+}
+
+//HumanHyperSkill
+func (p *PlayerStatus) Invincible() {
+	//10초간 무적
+	p.UsingMagicPoint()
+}
+
+// 엘프스킬
+//ElfbasicSkill
+func (p *PlayerStatus) Elusion() {
+	p.battleAvoid += 30
+	p.UsingMagicPoint()
+}
+
+//ElfHyperSkill
+func (p *PlayerStatus) Rapid() {
+	//1분동안 공격속도 500%상승
+	p.UsingMagicPoint()
+}
+
+// 오크스킬
+//OakBasicSkill
+func (p *PlayerStatus) Anger() {
+	p.battleAtk += int(float64(p.battleAtk) * 0.5)
+	p.battleDef -= int(float64(p.battleDef) * 0.1)
+	p.UsingMagicPoint()
+}
+
+//OakHyperSkill
+func (p *PlayerStatus) Fenzy() {
+	//1분동안 공격력 500%상승
+	p.UsingMagicPoint()
+}
 
 /***********************************************
 ************** 		weapon		****************
 ***********************************************/
+// 공통무기 - 주먹
+func (p *PlayerStatus) Fist() {
+	p.battleAtk = p.basicAtk
+}
+
+// Human
+func (p *PlayerStatus) ShortSword() {
+	p.battleAtk = p.basicAtk + int(float64(p.basicAtk)*0.05)
+}
+func (p *PlayerStatus) LongSword() {
+	p.battleAtk = p.basicAtk + int(float64(p.basicAtk)*0.1)
+}
+
+// Elf
+func (p *PlayerStatus) ShortBow() {
+	p.battleAtks = p.basicAtks + int(float64(p.basicAtks)*0.05)
+}
+func (p *PlayerStatus) LongBow() {
+	p.battleAtks = p.basicAtks + int(float64(p.basicAtks)*0.1)
+}
+
+//Oak
+func (p *PlayerStatus) ShortAxe() {
+	p.battleAtk = p.basicAtk + int(float64(p.basicAtk)*0.1)
+	p.battleAtks = p.basicAtks - int(float64(p.basicAtks)*0.05)
+}
+func (p *PlayerStatus) IronHammer() {
+	p.battleAtk = p.basicAtk + int(float64(p.basicAtk)*0.2)
+	p.battleAtks = p.basicAtks - int(float64(p.basicAtks)*0.1)
+}
