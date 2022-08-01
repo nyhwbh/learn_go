@@ -45,12 +45,12 @@ func (p *PlayerStatus) CreatePlayer() {
 }
 
 // 캐릭터 종족 선택
-func (p *PlayerStatus) PlayerSpeciesSetUp(sp int) {
-	p.species = sp
+func (p *PlayerStatus) PlayerSpeciesSetUp(species int) {
+	p.species = species
 }
 
 // 캐릭터 레벨업
-func (p *PlayerStatus) PlayerLevelUp(sp int) {
+func (p *PlayerStatus) PlayerLevelUp(species int) {
 	p.level += 1
 
 	// 최대체력 증가
@@ -74,7 +74,7 @@ func (p *PlayerStatus) PlayerLevelUp(sp int) {
 	}
 	// 종족별 능력치 상승
 	if p.level%5 == 0 {
-		switch sp {
+		switch species {
 		case 1: // Human
 			p.StatusLevelUpHuman()
 		case 2: // Elf
@@ -107,6 +107,11 @@ func (p *PlayerStatus) StatusLevelUpOak() {
 func (p *PlayerStatus) PlayerRecovery() {
 	p.hp = p.maxhp
 	p.mp = p.maxmp
+}
+
+// 피해를 입음
+func (p *PlayerStatus) PlayerAttacked(damage int) {
+	p.hp -= damage
 }
 
 /***********************************************
