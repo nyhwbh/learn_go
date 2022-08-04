@@ -53,6 +53,8 @@ type PlayerStatus struct {
 	basicAvoid  int
 	battleAvoid int
 	species     int
+	weapons     []string
+	skills      []string
 }
 
 // 캐릭터 생성
@@ -77,6 +79,17 @@ func (p *PlayerStatus) CreatePlayer() {
 // 캐릭터 종족 선택
 func (p *PlayerStatus) PlayerSpeciesSetUp(species int) {
 	p.species = species
+	switch species {
+	case 1:
+		p.weapons = []string{"Fist", "Short Sword", "Long Sword"}
+		p.skills = []string{"Heal", "Steam", "Guard", "Invincible"}
+	case 2:
+		p.weapons = []string{"Fist", "Short Bow", "Long Bow"}
+		p.skills = []string{"Heal", "Steam", "Elusion", "Rapid"}
+	case 3:
+		p.weapons = []string{"Fist", "Short Axe", "Iron Hammer"}
+		p.skills = []string{"Heal", "Steam", "Anger", "Frenzy"}
+	}
 }
 
 // 캐릭터 레벨업
@@ -107,10 +120,13 @@ func (p *PlayerStatus) PlayerLevelUp(species int) {
 		switch species {
 		case 1: // Human
 			p.StatusLevelUpHuman()
+			return
 		case 2: // Elf
 			p.StatusLevelUpElf()
+			return
 		case 3: // Oak
 			p.StatusLevelUpOak()
+			return
 		}
 	}
 }
@@ -140,8 +156,8 @@ func (p *PlayerStatus) PlayerRecovery() {
 }
 
 // 피해를 입음
-func (p *PlayerStatus) MonsterAttacks(damage int) {
-	p.hp -= damage
+func (p *PlayerStatus) MonsterAttacks(m *MonsterStatus) {
+	p.hp -= (m.basicAtk - p.battleDef)
 }
 
 /***********************************************
