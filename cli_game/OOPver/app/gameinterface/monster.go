@@ -29,6 +29,10 @@ func (m *MonsterStatus) CreateMonster() {
 	m.basicAtks = 800
 }
 
-func (m *MonsterStatus) PlayerAttack(damage int) {
-	m.hp -= damage
+func (m *MonsterStatus) PlayerAttack(p *PlayerStatus) {
+	m.hp -= (p.battleAtk - m.basicDef)
+}
+
+func (m *MonsterStatus) CounterAttack(p *PlayerStatus) {
+	p.hp -= (int(float64(m.basicAtk)*0.7) - p.battleDef)
 }
