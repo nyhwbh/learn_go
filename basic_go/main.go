@@ -71,5 +71,4 @@ func main() {
 		r2 := gofuncs.Ccalc(func(x int, y int) int { return x - y }, 10, 20)
 		fmt.Println(r2)
 	*/
-
 }
