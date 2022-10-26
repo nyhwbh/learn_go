@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"reflect"
-	"strconv"
+	"time"
+
+	"github.com/gosuri/uilive"
 )
 
 func main() {
@@ -78,46 +79,31 @@ func main() {
 		fmt.Println(r2)
 	*/
 
-	//uilive use way
-	// writer := uilive.New()
-	// writer.Start()
+	// uilive use way
+	writer := uilive.New()
+	writer.Start()
 
-	// fmt.Fprintf(writer, "Downloading.. %d\n", 10)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 20)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 30)
+	fmt.Fprintf(writer, "Downloading.. %d\n", 10)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 20)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 30)
 
-	// time.Sleep(time.Millisecond * 1000)
+	time.Sleep(time.Millisecond * 1000)
 
-	// fmt.Fprintf(writer, "Downloading.. %d\n", 11)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 22)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 33)
+	fmt.Fprintf(writer, "Downloading.. %d\n", 11)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 22)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 33)
 
-	// time.Sleep(time.Millisecond * 1000)
+	time.Sleep(time.Millisecond * 1000)
 
-	// fmt.Fprintf(writer, "Downloading.. %d\n", 111)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 222)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 333)
+	fmt.Fprintf(writer, "Downloading.. %d\n", 111)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 222)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 333)
 
-	// time.Sleep(time.Millisecond * 1000)
+	time.Sleep(time.Millisecond * 1000)
 
-	// fmt.Fprintf(writer, "Downloading.. %d\n", 1)
-	// fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 2)
-	// fmt.Fprintf(writer.Bypass(), "Downloading.. %d\n", 3)
+	fmt.Fprintf(writer, "Downloading.. %d\n", 1)
+	fmt.Fprintf(writer.Newline(), "Downloading.. %d\n", 2)
+	fmt.Fprintf(writer.Bypass(), "Downloading.. %d\n", 3)
 
-	// writer.Stop()
-
-	aNum := "2"
-	aString := "n"
-
-	fmt.Printf("aNum = %s, bString = %s \n", aNum, aString)
-
-	bNum, error := strconv.Atoi(aNum)
-	bString, err := strconv.ParseInt(aString, 10, 0)
-	if error != nil && err != nil {
-		fmt.Printf("convert complate \n")
-	}
-
-	fmt.Printf("aNum = %d, bString = %d \n", bNum, bString)
-	fmt.Printf("type of aString is %s type of bString is %s", reflect.TypeOf(aString), reflect.TypeOf(bString))
-
+	writer.Stop()
 }
